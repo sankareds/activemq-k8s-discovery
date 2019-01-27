@@ -1,21 +1,16 @@
-apiVersion: apps/v1 
-kind: StatefulSet  
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
-  name: activemq
+  name: activemq-deployment
 spec:
-  selector:
-    matchLabels:
-      app: activemq
-  serviceName: activemq
   replicas: 3
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: "false"
+        sidecar.istio.io/inject: "true"
       labels:
         app: activemq
     spec:
-      terminationGracePeriodSeconds: 10
       containers:
       - name: activemq
         image: cloud-activemq:1.0.0

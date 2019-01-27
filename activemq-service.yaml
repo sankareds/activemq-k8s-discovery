@@ -1,11 +1,40 @@
+# define services must be equal to the replicas that defined in activemq-statfulset.yaml
+# increment the app selecter accordingly
 apiVersion: v1
 kind: Service
 metadata:
-  name: activemq
+  name: activemq-0
 spec:
   ports:
     - port: 61616
+      name: tcp
       targetPort: 61616
   selector:
-    app: activemq
+    statefulset.kubernetes.io/pod-name: activemq-0
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: activemq-1
+spec:
+  ports:
+    - port: 61616
+      name: tcp
+      targetPort: 61616
+  selector:
+    statefulset.kubernetes.io/pod-name: activemq-1
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: activemq-2
+spec:
+  ports:
+    - port: 61616
+      name: tcp
+      targetPort: 61616
+  selector:
+    statefulset.kubernetes.io/pod-name: activemq-2
   type: NodePort
