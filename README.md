@@ -1,5 +1,6 @@
 ## Kubernetes Discovery for ActiveMQ
 
+
 ### Building
 
 Clone the repository and build the discovery agent using Maven:
@@ -73,3 +74,7 @@ Upgrade the deployment:
     kubectl set image deployment/activemq-deployment activemq=cloud-activemq:1.0.1
     kubectl rollout status deployment/activemq-deployment
     kubectl get deployments
+
+
+eval $(minikube docker-env)
+

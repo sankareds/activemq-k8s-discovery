@@ -27,3 +27,10 @@ spec:
         - containerPort: 61613
         - containerPort: 1883
         - containerPort: 61614
+        env:
+        - name: "ACTIVEMQ_DB_HOSTNAME"
+          value: "dummy"
+        - name: "ACTIVEMQ_DB_USER"
+          value: "epadmin"
+        - name: "ACTIVEMQ_DB_PASSWORD"
+          value: "dummy"

@@ -9,6 +9,9 @@ spec:
     - port: 61616
       name: tcp
       targetPort: 61616
+    - port: 8161
+      name: https
+      targetPort: 8161
   selector:
     statefulset.kubernetes.io/pod-name: activemq-0
   type: NodePort
@@ -35,6 +38,76 @@ spec:
     - port: 61616
       name: tcp
       targetPort: 61616
+  selector:
+    statefulset.kubernetes.io/pod-name: activemq-2
+  type: NodePort
+---
+#apiVersion: networking.istio.io/v1alpha3
+#kind: VirtualService
+#metadata:
+#  name: activemqvs
+#spec:
+#  hosts:
+#    - activemq
+#  http:
+#  - match:
+#    - uri:
+#        exact: /activemq-0
+#    rewrite:
+#      uri: "/"
+#    route:
+#    - destination:
+#        host: activemq-0.default.svc.cluster.local
+#        port:
+#          number: 8161
+
+
+# define services must be equal to the replicas that defined in activemq-statfulset.yaml
+# increment the app selecter accordingly
+apiVersion: v1
+kind: Service
+metadata:
+  name: activemq-0
+spec:
+  ports:
+    - port: 61616
+      name: tcp
+      targetPort: 61616
+    - port: 8161 
+      name: http
+      targetPort: 8161
+  selector:
+    statefulset.kubernetes.io/pod-name: activemq-0
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: activemq-1
+spec:
+  ports:
+    - port: 61616
+      name: tcp
+      targetPort: 61616
+    - port: 8161
+      name: http
+      targetPort: 8161
+  selector:
+    statefulset.kubernetes.io/pod-name: activemq-1
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: activemq-2
+spec:
+  ports:
+    - port: 61616
+      name: tcp
+      targetPort: 61616
+    - port: 8161
+      name: http
+      targetPort: 8161
   selector:
     statefulset.kubernetes.io/pod-name: activemq-2
   type: NodePort
