@@ -19,7 +19,6 @@ spec:
       containers:
       - name: activemq
         image: cloud-activemq:1.0.0
-        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8161
         - containerPort: 61616
@@ -31,6 +30,6 @@ spec:
         - name: "ACTIVEMQ_DB_HOSTNAME"
           value: "dummy"
         - name: "ACTIVEMQ_DB_USER"
-          value: "epadmin"
+          value: "dummy"
         - name: "ACTIVEMQ_DB_PASSWORD"
           value: "dummy"
