@@ -2,84 +2,217 @@ apiVersion: v1
 kind: Service
 metadata:
   name: activemq
+  namespace: djin-shared
 spec:
   ports:
-    - port: 61616
-      name: tcp
+    - name: tcp
+      port: 61616
       targetPort: 61616
-    - port: 8161
-      name: http
+    - name: http
+      port: 8161
       targetPort: 8161
   selector:
     app: activemq
-  type: NodePort
 ---
-#apiVersion: networking.istio.io/v1alpha3
-#kind: VirtualService
-#metadata:
-#  name: activemqvs
-#spec:
-#  hosts:
-#    - activemq
-#  http:
-#  - match:
-#    - uri:
-#        exact: /activemq-0
-#    rewrite:
-#      uri: "/"
-#    route:
-#    - destination:
-#        host: activemq-0.default.svc.cluster.local
-#        port:
-#          number: 8161
-
-
-# define services must be equal to the replicas that defined in activemq-statfulset.yaml
-# increment the app selecter accordingly
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: activemq-gateway
+  namespace: djin-shared
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - activemq.build.pib.dowjones.io
+      port:
+        name: http-main
+        number: 80
+        protocol: HTTP
+    - hosts:
+        - activemq-0.build.pib.dowjones.io
+      port:
+        name: http-a0
+        number: 80
+        protocol: HTTP
+    - hosts:
+        - activemq-1.build.pib.dowjones.io
+      port:
+        name: http-a1
+        number: 80
+        protocol: HTTP
+    - hosts:
+        - activemq-2.build.pib.dowjones.io
+      port:
+        name: http-a2
+        number: 80
+        protocol: HTTP
+    - hosts:
+        - '*'
+      port:
+        name: tcp
+        number: 61616
+        protocol: TCP
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: activemq-vs-http
+  namespace: djin-shared
+spec:
+  gateways:
+    - activemq-gateway
+  hosts:
+    - activemq.build.pib.dowjones.io
+  http-main:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: activemq.djin-shared.svc.cluster.local
+            port:
+              number: 8161
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: activemq
+  namespace: djin-shared
+spec:
+  host: activemq.djin-shared.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: JSESSIONID
+          ttl: 300s
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: activemq0-vs-http
+  namespace: djin-shared
+spec:
+  gateways:
+    - activemq-gateway
+  hosts:
+    - activemq-0.build.pib.dowjones.io
+  http-a0:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: activemq-0.djin-shared.svc.cluster.local
+            port:
+              number: 8161
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: activemq1-vs-http
+  namespace: djin-shared
+spec:
+  gateways:
+    - activemq-gateway
+  hosts:
+    - activemq-1.build.pib.dowjones.io
+  http-a1:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: activemq-1.djin-shared.svc.cluster.local
+            port:
+              number: 8161
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: activemq2-vs-http
+  namespace: djin-shared
+spec:
+  gateways:
+    - activemq-gateway
+  hosts:
+    - activemq-2.build.pib.dowjones.io
+  http-a2:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: activemq-2.djin-shared.svc.cluster.local
+            port:
+              number: 8161
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: activemq-vs-tcp
+  namespace: djin-shared
+spec:
+  gateways:
+    - activemq-gateway
+  hosts:
+    - activemq.build.pib.dowjones.io
+  tcp:
+    - match:
+        - port: 61616
+      route:
+        - destination:
+            host: activemq.djin-shared.svc.cluster.local
+            port:
+              number: 61616
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: activemq-0
+  namespace: djin-shared
 spec:
   ports:
-    - port: 61616
-      name: tcp
+    - name: tcp
+      port: 61616
+      protocol: TCP
       targetPort: 61616
-    - port: 8161 
-      name: http
+    - name: http
+      port: 8161
       targetPort: 8161
   selector:
     statefulset.kubernetes.io/pod-name: activemq-0
-  type: NodePort
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: activemq-1
+  namespace: djin-shared
 spec:
   ports:
-    - port: 61616
-      name: tcp
+    - name: tcp
+      port: 61616
+      protocol: TCP
       targetPort: 61616
-    - port: 8161
-      name: http
+    - name: http
+      port: 8161
       targetPort: 8161
   selector:
     statefulset.kubernetes.io/pod-name: activemq-1
-  type: NodePort
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: activemq-2
+  namespace: djin-shared
 spec:
   ports:
-    - port: 61616
-      name: tcp
+    - name: tcp
+      port: 61616
       targetPort: 61616
-    - port: 8161
-      name: http
+    - name: http
+      port: 8161
       targetPort: 8161
   selector:
     statefulset.kubernetes.io/pod-name: activemq-2
-  type: NodePort

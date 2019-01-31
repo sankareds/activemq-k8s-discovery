@@ -1,35 +1,47 @@
-apiVersion: apps/v1 
-kind: StatefulSet  
+apiVersion: apps/v1
+kind: StatefulSet
 metadata:
   name: activemq
+  namespace: djin-shared
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: activemq
   serviceName: activemq
-  replicas: 3 
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: "false"
+        sidecar.istio.io/inject: 'true'
       labels:
         app: activemq
     spec:
-      terminationGracePeriodSeconds: 10
       containers:
-      - name: activemq
-        image: cloud-activemq:1.0.0
-        ports:
-        - containerPort: 8161
-        - containerPort: 61616
-        - containerPort: 5672
-        - containerPort: 61613
-        - containerPort: 1883
-        - containerPort: 61614
-        env:
-        - name: "ACTIVEMQ_DB_HOSTNAME"
-          value: "ep-utils-db.cp4u2wlfefuk.us-east-1.rds.amazonaws.com"
-        - name: "ACTIVEMQ_DB_USER"
-          value: "epadmin"
-        - name: "ACTIVEMQ_DB_PASSWORD"
-          value: "EPadm\\!n0"
+        - env:
+            - name: NAMESPACE
+              value: djin-shared
+            - name: ACTIVEMQ_DB_HOSTNAME
+              value: ep-utils-db.cp4u2wlfefuk.us-east-1.rds.amazonaws.com
+            - name: ACTIVEMQ_DB_USER
+              value: epadmin
+            - name: ACTIVEMQ_DB_PASSWORD
+              value: EPadm\!n0
+            - name: ACTIVEMQ_CONNECTOR_URI
+              value: >-
+                static:(tcp://activemq-0:61616,tcp://activemq-1:61616,tcp://activemq-2:61616)?maxReconnectDelay=5000&amp;useExponentialBackOff=false
+          image: 'artifactory.dowjones.io:5000/djin/productivity/activemq:latest'
+          name: activemq
+          ports:
+            - containerPort: 8161
+              name: http
+              protocol: TCP
+            - containerPort: 61616
+              name: tcp
+              protocol: TCP
+            - containerPort: 5672
+            - containerPort: 61613
+            - containerPort: 1883
+            - containerPort: 61614
+      imagePullSecrets:
+        - name: artifactorycred
+      terminationGracePeriodSeconds: 10

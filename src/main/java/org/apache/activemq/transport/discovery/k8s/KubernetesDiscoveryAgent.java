@@ -105,6 +105,13 @@ public class KubernetesDiscoveryAgent implements DiscoveryAgent {
                 try {
                     LOG.info("Enumerating pods with label key: {} label value: {}",
                             podLabelKey, podLabelValue);
+                    String envNamespace = System.getenv("NAMESPACE");
+
+                    if(envNamespace != null){
+                        namespace = envNamespace;
+                    }
+
+                    LOG.info("Using "+namespace+ " namespace");
                     final Set<String> availableServices = client.pods().inNamespace(namespace)
                         .withLabel(podLabelKey, podLabelValue)
                         .list().getItems().stream()

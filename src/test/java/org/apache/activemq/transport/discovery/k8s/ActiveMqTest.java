@@ -24,6 +24,8 @@ public class ActiveMqTest {
     @Test
     public void canCreateKubernetesDiscoveryAgent() throws IOException {
         //thread(new HelloWorldProducer(), false);
+//        HelloWorldProducer p = new HelloWorldProducer();
+//        p.run();
         HelloWorldConsumer c = new HelloWorldConsumer() ;
         c.run();
 
@@ -39,7 +41,7 @@ public class ActiveMqTest {
         public void run() {
             try {
                 // Create a ConnectionFactory
-                ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vm://192.168.99.102:31068");
+                ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("failover:(tcp://activemq.build.pib.dowjones.io:61616)?randomize=true");
 
                 // Create a Connection
                 Connection connection = connectionFactory.createConnection();
@@ -49,9 +51,10 @@ public class ActiveMqTest {
                 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
                 // Create the destination (Topic or Queue)
-                Destination destination = session.createQueue("TEST.FOO");
+                Destination destination = session.createQueue("test");
 
                 // Create a MessageProducer from the Session to the Topic or Queue
+
                 MessageProducer producer = session.createProducer(destination);
                 producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 
@@ -78,38 +81,40 @@ public class ActiveMqTest {
         public void run() {
             try {
 
-                // Create a ConnectionFactory
-                ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://192.168.99.102:31378");
+                    // Create a ConnectionFactory
+                    ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("failover:(tcp://activemq.build.pib.dowjones.io:61616)?randomize=true");
 
-                // Create a Connection
-                Connection connection = connectionFactory.createConnection();
-                connection.start();
+                    // Create a Connection
+                    Connection connection = connectionFactory.createConnection();
+                    connection.start();
 
-                connection.setExceptionListener(this);
+                    connection.setExceptionListener(this);
 
-                // Create a Session
-                Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+                    // Create a Session
+                    Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-                // Create the destination (Topic or Queue)
-                Destination destination = session.createQueue("test");
+                    // Create the destination (Topic or Queue)
+                    Destination destination = session.createQueue("test");
 
-                // Create a MessageConsumer from the Session to the Topic or Queue
-                MessageConsumer consumer = session.createConsumer(destination);
+                    // Create a MessageConsumer from the Session to the Topic or Queue
+                    MessageConsumer consumer = session.createConsumer(destination);
 
-                // Wait for a message
-                Message message = consumer.receive(1000);
+                    while (true) {
+                    // Wait for a message
+                    Message message = consumer.receive(10000);
 
-                if (message instanceof TextMessage) {
-                    TextMessage textMessage = (TextMessage) message;
-                    String text = textMessage.getText();
-                    System.out.println("Received: " + text);
-                } else {
-                    System.out.println("Received: " + message);
+                    if (message instanceof TextMessage) {
+                        TextMessage textMessage = (TextMessage) message;
+                        String text = textMessage.getText();
+                        System.out.println("Received: " + text);
+                    } else {
+                        System.out.println("Received: " + message);
+                    }
+
+                    consumer.close();
+                    session.close();
+                    connection.close();
                 }
-
-                consumer.close();
-                session.close();
-                connection.close();
             } catch (Exception e) {
                 System.out.println("Caught: " + e);
                 e.printStackTrace();
