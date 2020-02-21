@@ -1,0 +1,341 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+    <blocksInheritance>true</blocksInheritance>
+    <permission>hudson.scm.SCM.Tag:kaulk</permission>
+    <permission>hudson.scm.SCM.Tag:rahners</permission>
+    <permission>hudson.scm.SCM.Tag:snyderm</permission>
+    <permission>hudson.scm.SCM.Tag:vermak</permission>
+    <permission>hudson.model.Item.Release:kaulk</permission>
+    <permission>hudson.model.Item.Release:rahners</permission>
+    <permission>hudson.model.Item.Release:snyderm</permission>
+    <permission>hudson.model.Item.Release:vermak</permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Delete:kaulk
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Delete:rahners
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Delete:snyderm
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Delete:vermak
+    </permission>
+    <permission>hudson.model.Item.ViewStatus:kaulk</permission>
+    <permission>hudson.model.Item.ViewStatus:rahners</permission>
+    <permission>hudson.model.Item.ViewStatus:snyderm</permission>
+    <permission>hudson.model.Item.ViewStatus:vermak</permission>
+    <permission>hudson.model.Item.Move:kaulk</permission>
+    <permission>hudson.model.Item.Move:rahners</permission>
+    <permission>hudson.model.Item.Move:snyderm</permission>
+    <permission>hudson.model.Item.Move:vermak</permission>
+    <permission>hudson.model.Item.Read:anonymous</permission>
+    <permission>hudson.model.Item.Read:kaulk</permission>
+    <permission>hudson.model.Item.Read:rahners</permission>
+    <permission>hudson.model.Item.Read:snyderm</permission>
+    <permission>hudson.model.Item.Read:vermak</permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:kaulk
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:rahners
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:snyderm
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:vermak
+    </permission>
+    <permission>hudson.model.Run.Replay:kaulk</permission>
+    <permission>hudson.model.Run.Replay:rahners</permission>
+    <permission>hudson.model.Run.Replay:snyderm</permission>
+    <permission>hudson.model.Run.Replay:vermak</permission>
+    <permission>hudson.model.Item.Workspace:anonymous</permission>
+    <permission>hudson.model.Item.Workspace:kaulk</permission>
+    <permission>hudson.model.Item.Workspace:rahners</permission>
+    <permission>hudson.model.Item.Workspace:snyderm</permission>
+    <permission>hudson.model.Item.Workspace:vermak</permission>
+    <permission>hudson.model.Item.Configure:kaulk</permission>
+    <permission>hudson.model.Item.Configure:rahners</permission>
+    <permission>hudson.model.Item.Configure:snyderm</permission>
+    <permission>hudson.model.Item.Configure:vermak</permission>
+    <permission>hudson.model.Run.Delete:kaulk</permission>
+    <permission>hudson.model.Run.Delete:rahners</permission>
+    <permission>hudson.model.Run.Delete:snyderm</permission>
+    <permission>hudson.model.Run.Delete:vermak</permission>
+    <permission>hudson.model.Item.Discover:anonymous</permission>
+    <permission>hudson.model.Item.Discover:kaulk</permission>
+    <permission>hudson.model.Item.Discover:rahners</permission>
+    <permission>hudson.model.Item.Discover:snyderm</permission>
+    <permission>hudson.model.Item.Discover:vermak</permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.View:kaulk
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.View:rahners
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.View:snyderm
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.View:vermak
+    </permission>
+    <permission>hudson.model.Item.Build:kaulk</permission>
+    <permission>hudson.model.Item.Build:rahners</permission>
+    <permission>hudson.model.Item.Build:snyderm</permission>
+    <permission>hudson.model.Item.Build:vermak</permission>
+    <permission>
+    com.synopsys.arc.jenkins.plugins.ownership.OwnershipPlugin.Jobs:kaulk
+    </permission>
+    <permission>
+    com.synopsys.arc.jenkins.plugins.ownership.OwnershipPlugin.Jobs:rahners
+    </permission>
+    <permission>
+    com.synopsys.arc.jenkins.plugins.ownership.OwnershipPlugin.Jobs:snyderm
+    </permission>
+    <permission>
+    com.synopsys.arc.jenkins.plugins.ownership.OwnershipPlugin.Jobs:vermak
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Create:kaulk
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Create:rahners
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Create:snyderm
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Create:vermak
+    </permission>
+    <permission>hudson.model.Item.Cancel:kaulk</permission>
+    <permission>hudson.model.Item.Cancel:rahners</permission>
+    <permission>hudson.model.Item.Cancel:snyderm</permission>
+    <permission>hudson.model.Item.Cancel:vermak</permission>
+    <permission>hudson.model.Item.Delete:kaulk</permission>
+    <permission>hudson.model.Item.Delete:rahners</permission>
+    <permission>hudson.model.Item.Delete:snyderm</permission>
+    <permission>hudson.model.Item.Delete:vermak</permission>
+    <permission>hudson.model.Run.Update:kaulk</permission>
+    <permission>hudson.model.Run.Update:rahners</permission>
+    <permission>hudson.model.Run.Update:snyderm</permission>
+    <permission>hudson.model.Run.Update:vermak</permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Update:kaulk
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Update:rahners
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Update:snyderm
+    </permission>
+    <permission>
+    com.cloudbees.plugins.credentials.CredentialsProvider.Update:vermak
+    </permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.19.2">
+      <projectUrl>https://github.dowjones.net/DevOps-Cookbooks/cookbook-test/</projectUrl>
+      <displayName></displayName>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.11.0">
+     <ownership>
+      <ownershipEnabled>true</ownershipEnabled>
+      <primaryOwnerId>test-Owner</primaryOwnerId>
+      <coownersIds class="sorted-set"/>
+     </ownership>
+    </com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.5.2">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <refspec></refspec>
+        <url>git@github.dowjones.net:DevOps-Cookbooks/cookbook-test.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.WipeWorkspace/>
+      <hudson.plugins.git.extensions.impl.CleanCheckout/>
+      <hudson.plugins.git.extensions.impl.UserExclusion>
+        <excludedUsers>Dow Jones</excludedUsers>
+      </hudson.plugins.git.extensions.impl.UserExclusion>
+    </extensions>
+  </scm>
+  <assignedNode>master-replicated</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(System)</jdk>
+  <triggers>
+    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.20.0">
+    <spec/>
+    </com.cloudbees.jenkins.GitHubPushTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>
+if [ -d "roles" ]; then&#10;
+for f in roles/*.json; do&#10;
+	# do some stuff here with "$f"&#10;
+	# remember to quote it or spaces may misbehave&#10;
+	jsonlint ${f}&#10;
+	python2.7 /etc/chef-max/chef-max-roles.py ${f} > temp.json&#10;
+	python2.7 -m json.tool temp.json > pretty.json&#10;
+	rm -rf temp.json&#10;
+	mv pretty.json ${f}&#10;
+done&#10;
+else&#10;
+	echo "roles directory not present in cookbook"&#10;
+	exit 1&#10;
+fi&#10;
+&#10;
+if [ -d "environments" ]; then&#10;
+for f in environments/*.json; do&#10;
+	# do some stuff here with "$f"&#10;
+	# remember to quote it or spaces may misbehave&#10;
+	jsonlint ${f}&#10;
+	python2.7 /etc/chef-max/chef-max-env.py ${f} > temp.json&#10;
+	python2.7 -m json.tool temp.json > pretty.json&#10;
+	rm -rf temp.json&#10;
+	mv pretty.json ${f}&#10;
+done&#10;
+else&#10;
+	echo "environments directory not present in cookbook"&#10;
+	exit 1&#10;
+fi&#10;
+      </command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>foodcritic .&#10;
+echo &quot;SUCCESS&quot;&#10;
+&#10;
+GIT_REPO=$(basename ${GIT_URL})&#10;
+echo $GIT_REPO&#10;
+&#10;
+COOKBOOKNAME=$(echo ${GIT_REPO} | cut -d &apos;.&apos; -f1)&#10;
+echo $COOKBOOKNAME&#10;
+&#10;
+/opt/chefdk/bin/berks install&#10;
+/opt/chefdk/bin/berks package&#10;
+&#10;
+&#10;
+git clone $GIT_URL&#10;
+cd $COOKBOOKNAME&#10;
+&#10;
+/opt/chefdk/bin/knife spork bump $COOKBOOKNAME -o $WORKSPACE -p&#10;
+NEWVER=$( awk &apos;/^version/ { $1=&quot;&quot;; print $0; exit}&apos; metadata.rb )&#10;
+STRIPVER=$(( awk &apos;/version/ { $1=&quot;&quot;; print $0; exit}&apos; metadata.rb ) | sed &quot;s/&apos;//g&quot; | sed &quot;s/ //g&quot;)&#10;
+mv ../*.tar.gz ../${JOB_BASE_NAME}.&quot;${STRIPVER}&quot;.tar.gz&#10;
+&#10;
+export STRIPVER&#10;
+git add metadata.rb&#10;
+git commit -a -m &quot;Version ${NEWVER}&quot;&#10;
+git tag $NEWVER&#10;
+git push --tags origin master </command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.44">
+      <recipientList>EMAIL</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <recipientList>EMAIL</recipientList>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders/>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript></postsendScript>
+      <attachBuildLog>true</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.29">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.17.1">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>3</timeoutMinutes>
+      </strategy>
+      <operationList/>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <org.jfrog.hudson.generic.ArtifactoryGenericConfigurator plugin="artifactory@2.6.0">
+<details>
+<artifactoryName>pipeline</artifactoryName>
+<artifactoryUrl>https://artifactory.dowjones.io/artifactory</artifactoryUrl>
+<deployReleaseRepository>
+<keyFromText>djin-chef-local</keyFromText>
+<keyFromSelect/>
+<dynamicMode>true</dynamicMode>
+</deployReleaseRepository>
+<stagingPlugin/>
+</details>
+<resolverDetails>
+<artifactoryName>pipeline</artifactoryName>
+<artifactoryUrl>https://artifactory.dowjones.io/artifactory</artifactoryUrl>
+<stagingPlugin/>
+</resolverDetails>
+<deployerCredentialsConfig>
+<credentials>
+<username/>
+<password/>
+</credentials>
+<credentialsId/>
+<overridingCredentials>false</overridingCredentials>
+</deployerCredentialsConfig>
+<resolverCredentialsConfig>
+<credentials>
+<username/>
+<password/>
+</credentials>
+<credentialsId/>
+<overridingCredentials>false</overridingCredentials>
+</resolverCredentialsConfig>
+<deployPattern>*.tar.gz=>cookbooks/${JOB_BASE_NAME}/</deployPattern>
+<resolvePattern/>
+<matrixParams/>
+<deployBuildInfo>true</deployBuildInfo>
+<includeEnvVars>false</includeEnvVars>
+<envVarsPatterns>
+<includePatterns/>
+<excludePatterns>*password*,*secret*,*key*</excludePatterns>
+</envVarsPatterns>
+<discardOldBuilds>false</discardOldBuilds>
+<discardBuildArtifacts>true</discardBuildArtifacts>
+<multiConfProject>false</multiConfProject>
+</org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
+  </buildWrappers>
+</project>

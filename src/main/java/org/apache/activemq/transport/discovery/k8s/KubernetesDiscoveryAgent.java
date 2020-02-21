@@ -53,6 +53,7 @@ public class KubernetesDiscoveryAgent implements DiscoveryAgent {
 
     private long initialReconnectDelay = 1000;
     private long maxReconnectDelay = 1000 * 30;
+    private int maxPods = 3;
     private long backOffMultiplier = 2;
     private boolean useExponentialBackOff=true;
     private int maxReconnectAttempts;
@@ -325,6 +326,14 @@ public class KubernetesDiscoveryAgent implements DiscoveryAgent {
 
     public void setInitialReconnectDelay(long initialReconnectDelay) {
         this.initialReconnectDelay = initialReconnectDelay;
+    }
+
+    public void setMaxPods(int maxPods) {
+        this.maxPods = maxPods;
+    }
+
+    public int getMaxPods() {
+        return maxPods;
     }
 
     public int getMaxReconnectAttempts() {

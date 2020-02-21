@@ -1,0 +1,1493 @@
+[
+  {
+    "expectedArtifacts": [
+      {
+        "defaultArtifact": {
+          "id": "3abe1976-6126-4b9c-bc7b-f8ae48ace8a9",
+          "name": "defaults/nginx-splunk-defaults.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/defaults/nginx-splunk-defaults.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "splunk-defaults-deployment",
+        "id": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "matchArtifact": {
+          "id": "bd411a9e-6c0f-46be-a557-a358c2a5d348",
+          "name": "splunk-defaults-deployment",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "921c7010-f464-4a1e-aebf-e5d089df545f",
+          "name": "defaults/nginx-splunk-defaults-service.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/defaults/nginx-splunk-defaults-service.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "splunk-defaults-service",
+        "id": "ae1e7f9f-228b-4378-b8b2-a1b05db6e9d1",
+        "matchArtifact": {
+          "id": "1d253278-552f-4dab-9968-065863f3f2ff",
+          "name": "splunk-defaults-service",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      }
+    ],
+    "keepWaitingPipelines": false,
+    "parameterConfig": [
+      {
+        "default": "nonprod",
+        "label": "",
+        "name": "ENV",
+        "required": true
+      },
+      {
+        "default": "<?xmlversion=\"1.0\"encoding=\"UTF-8\"?><license><signature>c2+f5YqOMY28op7Gv0MAPR8Yzy7w3C/2fmy7VBG81NCaBH1UtG0WWKHmW6o9bepG98M8Qcr9G4GD76Y5kcSwB7h0FVMudKNrfPTjF2Er4ZMU7QjXUWaFTNvE1YKlKQaDgtVY5hWQxSAzyBsxQFIfQmOgCLiwiEIFsb5JFWQ3c/11I/mItcUBfdvdQSXkWIElTFB78vy1mBsxvSgHplHnJnF41woFTU0KweIrn78UBLB8aLVgCBgOJyL3wuKfW4ySizIlZQAE+kA8WmBsvjiRlig/o2m2K1BA3GXzEaPulYbxk3IEWCNc8mXggVLABf632+wwIHxqw4361wjEjxMvkQ==</signature><payload><type>enterprise</type><group_id>Enterprise</group_id><quota>268435456000</quota><max_violations>5</max_violations><window_period>30</window_period><creation_time>1560775396</creation_time><label>SplunkEnterpriseSalesTrial</label><expiration_time>1564663396</expiration_time><features><feature>Auth</feature><feature>FwdData</feature><feature>RcvData</feature><feature>LocalSearch</feature><feature>DistSearch</feature><feature>RcvSearch</feature><feature>ScheduledSearch</feature><feature>Alerting</feature><feature>DeployClient</feature><feature>DeployServer</feature><feature>SplunkWeb</feature><feature>SigningProcessor</feature><feature>SyslogOutputProcessor</feature><feature>CanBeRemoteMaster</feature><feature>AllowDuplicateKeys</feature></features><sourcetypes/><guid>330D412A-4A58-4786-8EC0-C57F143B3A99</guid></payload></license>",
+        "hasOptions": true,
+        "name": "LICENSE_XML",
+        "options": [
+          {
+            "value": "<?xmlversion=\"1.0\"encoding=\"UTF-8\"?><license><signature>c2+f5YqOMY28op7Gv0MAPR8Yzy7w3C/2fmy7VBG81NCaBH1UtG0WWKHmW6o9bepG98M8Qcr9G4GD76Y5kcSwB7h0FVMudKNrfPTjF2Er4ZMU7QjXUWaFTNvE1YKlKQaDgtVY5hWQxSAzyBsxQFIfQmOgCLiwiEIFsb5JFWQ3c/11I/mItcUBfdvdQSXkWIElTFB78vy1mBsxvSgHplHnJnF41woFTU0KweIrn78UBLB8aLVgCBgOJyL3wuKfW4ySizIlZQAE+kA8WmBsvjiRlig/o2m2K1BA3GXzEaPulYbxk3IEWCNc8mXggVLABf632+wwIHxqw4361wjEjxMvkQ==</signature><payload><type>enterprise</type><group_id>Enterprise</group_id><quota>268435456000</quota><max_violations>5</max_violations><window_period>30</window_period><creation_time>1560775396</creation_time><label>SplunkEnterpriseSalesTrial</label><expiration_time>1564663396</expiration_time><features><feature>Auth</feature><feature>FwdData</feature><feature>RcvData</feature><feature>LocalSearch</feature><feature>DistSearch</feature><feature>RcvSearch</feature><feature>ScheduledSearch</feature><feature>Alerting</feature><feature>DeployClient</feature><feature>DeployServer</feature><feature>SplunkWeb</feature><feature>SigningProcessor</feature><feature>SyslogOutputProcessor</feature><feature>CanBeRemoteMaster</feature><feature>AllowDuplicateKeys</feature></features><sourcetypes/><guid>330D412A-4A58-4786-8EC0-C57F143B3A99</guid></payload></license>"
+          }
+        ],
+        "required": true
+      },
+      {
+        "default": "pib-splunk-vir-int/splunk",
+        "description": "",
+        "hasOptions": false,
+        "label": "",
+        "name": "SMARTSTORE_S3",
+        "options": [
+          {
+            "value": ""
+          }
+        ],
+        "pinned": false,
+        "required": true
+      }
+    ],
+    "lastModifiedBy": "Sankar.Kanagarathinam@dowjones.com",
+    "description": "Pipeline to deploy app djin-mproductivity-splunk",
+    "index": 0,
+    "triggers": [],
+    "appConfig": {},
+    "limitConcurrent": true,
+    "application": "djin-mproductivity-splunk",
+    "name": "splunk-defaults-v2",
+    "stages": [
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "splunk-defaults-deployment",
+        "notifications": [
+          {
+            "address": "gtest",
+            "level": "stage",
+            "message": {
+              "stage.complete": {
+                "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } complete successfully"
+              },
+              "stage.failed": {
+                "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+              }
+            },
+            "type": "slack",
+            "when": [
+              "stage.complete",
+              "stage.failed"
+            ]
+          }
+        ],
+        "refId": "3",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requiredArtifactIds": [],
+        "requisiteStageRefIds": [
+          "4"
+        ],
+        "sendNotifications": true,
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "ae1e7f9f-228b-4378-b8b2-a1b05db6e9d1",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "splunk-defaults-service",
+        "refId": "4",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      }
+    ],
+    "id": "bb1c2fc1-c5d6-42d6-b1cd-d7b1a25cc378",
+    "updateTs": "1567022715000",
+    "notifications": [
+      {
+        "address": "gtest",
+        "level": "pipeline",
+        "message": {
+          "pipeline.complete": {
+            "text": "Application ${ stages[moniker]['name'] }  stage ${ execution[stages'][0]['name'] } complete successfully"
+          },
+          "pipeline.failed": {
+            "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+          }
+        },
+        "type": "slack",
+        "when": [
+          "pipeline.starting"
+        ]
+      }
+    ]
+  },
+  {
+    "expectedArtifacts": [
+      {
+        "defaultArtifact": {
+          "id": "3abe1976-6126-4b9c-bc7b-f8ae48ace8a9",
+          "name": "licenser/pvc.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/licenser/pvc.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "pvc",
+        "id": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "matchArtifact": {
+          "id": "bd411a9e-6c0f-46be-a557-a358c2a5d348",
+          "name": "pvc",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "2b99db6b-2ade-4ea0-9446-56522898fcbc",
+          "name": "licenser/service.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/licenser/service.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "service",
+        "id": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "matchArtifact": {
+          "id": "7d05ec7e-6fa6-4c15-accf-2d7099810a28",
+          "name": "service",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "b8a6130d-f377-4a82-b95a-1f40d72e8706",
+          "name": "licenser/deployment.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/licenser/deployment.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "deployment",
+        "id": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "matchArtifact": {
+          "id": "59b6c2e8-dd62-4d83-a1b4-3d6b7274bfc5",
+          "name": "deployment",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      }
+    ],
+    "keepWaitingPipelines": false,
+    "parameterConfig": [
+      {
+        "default": "nonprod",
+        "label": "",
+        "name": "ENV",
+        "required": true
+      }
+    ],
+    "lastModifiedBy": "Sankar.Kanagarathinam@dowjones.com",
+    "description": "Pipeline to deploy app djin-mproductivity-splunk",
+    "index": 1,
+    "triggers": [],
+    "appConfig": {},
+    "limitConcurrent": true,
+    "application": "djin-mproductivity-splunk",
+    "name": "splunk-licenser-v2",
+    "stages": [
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "pvc",
+        "refId": "4",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "service",
+        "refId": "5",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "4"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "deployment",
+        "refId": "6",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "5"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      }
+    ],
+    "id": "9daa10c2-40fe-4dd9-a9ba-78b09568a5b4",
+    "updateTs": "1567022715000",
+    "notifications": [
+      {
+        "address": "gtest",
+        "level": "pipeline",
+        "message": {
+          "pipeline.complete": {
+            "text": "Application ${ stages[moniker]['name'] }  stage ${ execution[stages'][0]['name'] } complete successfully"
+          },
+          "pipeline.failed": {
+            "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+          }
+        },
+        "type": "slack",
+        "when": [
+          "pipeline.starting"
+        ]
+      }
+    ]
+  },
+  {
+    "expectedArtifacts": [
+      {
+        "defaultArtifact": {
+          "id": "3abe1976-6126-4b9c-bc7b-f8ae48ace8a9",
+          "name": "master/pvc.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/master/pvc.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "pvc",
+        "id": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "matchArtifact": {
+          "id": "bd411a9e-6c0f-46be-a557-a358c2a5d348",
+          "name": "pvc",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "2b99db6b-2ade-4ea0-9446-56522898fcbc",
+          "name": "master/service.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/master/service.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "service",
+        "id": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "matchArtifact": {
+          "id": "7d05ec7e-6fa6-4c15-accf-2d7099810a28",
+          "name": "service",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "b8a6130d-f377-4a82-b95a-1f40d72e8706",
+          "name": "master/deployment.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/master/deployment.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "deployment",
+        "id": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "matchArtifact": {
+          "id": "59b6c2e8-dd62-4d83-a1b4-3d6b7274bfc5",
+          "name": "deployment",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      }
+    ],
+    "keepWaitingPipelines": false,
+    "parameterConfig": [
+      {
+        "default": "nonprod",
+        "label": "",
+        "name": "ENV",
+        "required": true
+      }
+    ],
+    "lastModifiedBy": "Sankar.Kanagarathinam@dowjones.com",
+    "description": "Pipeline to deploy app djin-mproductivity-splunk",
+    "index": 2,
+    "triggers": [],
+    "appConfig": {},
+    "limitConcurrent": true,
+    "application": "djin-mproductivity-splunk",
+    "name": "splunk-master-v2",
+    "stages": [
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "pvc",
+        "refId": "4",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "service",
+        "refId": "5",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "4"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "deployment",
+        "refId": "6",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "5"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      }
+    ],
+    "id": "c890e0c2-b9de-4331-85ea-b9b2760802eb",
+    "updateTs": "1567022715000",
+    "notifications": [
+      {
+        "address": "gtest",
+        "level": "pipeline",
+        "message": {
+          "pipeline.complete": {
+            "text": "Application ${ stages[moniker]['name'] }  stage ${ execution[stages'][0]['name'] } complete successfully"
+          },
+          "pipeline.failed": {
+            "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+          }
+        },
+        "type": "slack",
+        "when": [
+          "pipeline.starting"
+        ]
+      }
+    ]
+  },
+  {
+    "expectedArtifacts": [
+      {
+        "defaultArtifact": {
+          "id": "2b99db6b-2ade-4ea0-9446-56522898fcbc",
+          "name": "indexer/service.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/indexer/service.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "service",
+        "id": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "matchArtifact": {
+          "id": "7d05ec7e-6fa6-4c15-accf-2d7099810a28",
+          "name": "service",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "b8a6130d-f377-4a82-b95a-1f40d72e8706",
+          "name": "indexer/deployment.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/indexer/deployment.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "deployment",
+        "id": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "matchArtifact": {
+          "id": "59b6c2e8-dd62-4d83-a1b4-3d6b7274bfc5",
+          "name": "deployment",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      }
+    ],
+    "keepWaitingPipelines": false,
+    "parameterConfig": [
+      {
+        "default": "nonprod",
+        "label": "",
+        "name": "ENV",
+        "required": true
+      }
+    ],
+    "lastModifiedBy": "Sankar.Kanagarathinam@dowjones.com",
+    "description": "Pipeline to deploy app djin-mproductivity-splunk",
+    "index": 3,
+    "triggers": [],
+    "appConfig": {},
+    "limitConcurrent": true,
+    "application": "djin-mproductivity-splunk",
+    "name": "splunk-indexer-v2",
+    "stages": [
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "service",
+        "refId": "5",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "deployment",
+        "refId": "6",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "5"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      }
+    ],
+    "id": "9eb9995f-e51e-471f-b531-49a18821c32b",
+    "updateTs": "1567022715000",
+    "notifications": [
+      {
+        "address": "gtest",
+        "level": "pipeline",
+        "message": {
+          "pipeline.complete": {
+            "text": "Application ${ stages[moniker]['name'] }  stage ${ execution[stages'][0]['name'] } complete successfully"
+          },
+          "pipeline.failed": {
+            "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+          }
+        },
+        "type": "slack",
+        "when": [
+          "pipeline.starting"
+        ]
+      }
+    ]
+  },
+  {
+    "expectedArtifacts": [
+      {
+        "defaultArtifact": {
+          "id": "3abe1976-6126-4b9c-bc7b-f8ae48ace8a9",
+          "name": "deployment-server/pvc.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/deployment-server/pvc.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "pvc",
+        "id": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "matchArtifact": {
+          "id": "bd411a9e-6c0f-46be-a557-a358c2a5d348",
+          "name": "pvc",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "2b99db6b-2ade-4ea0-9446-56522898fcbc",
+          "name": "deployment-server/service.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/deployment-server/service.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "service",
+        "id": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "matchArtifact": {
+          "id": "7d05ec7e-6fa6-4c15-accf-2d7099810a28",
+          "name": "service",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "b8a6130d-f377-4a82-b95a-1f40d72e8706",
+          "name": "deployment-server/deployment.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/deployment-server/deployment.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "deployment",
+        "id": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "matchArtifact": {
+          "id": "59b6c2e8-dd62-4d83-a1b4-3d6b7274bfc5",
+          "name": "deployment",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      }
+    ],
+    "keepWaitingPipelines": false,
+    "parameterConfig": [
+      {
+        "default": "nonprod",
+        "label": "",
+        "name": "ENV",
+        "required": true
+      }
+    ],
+    "lastModifiedBy": "Sankar.Kanagarathinam@dowjones.com",
+    "description": "Pipeline to deploy app djin-mproductivity-splunk",
+    "index": 4,
+    "triggers": [],
+    "appConfig": {},
+    "limitConcurrent": true,
+    "application": "djin-mproductivity-splunk",
+    "name": "splunk-deployment-server-v2",
+    "stages": [
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "pvc",
+        "refId": "4",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "service",
+        "refId": "5",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "4"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "deployment",
+        "refId": "6",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "5"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      }
+    ],
+    "id": "865765d4-3747-4b0d-9a26-0518f9045b21",
+    "updateTs": "1567022714000",
+    "notifications": [
+      {
+        "address": "gtest",
+        "level": "pipeline",
+        "message": {
+          "pipeline.complete": {
+            "text": "Application ${ stages[moniker]['name'] }  stage ${ execution[stages'][0]['name'] } complete successfully"
+          },
+          "pipeline.failed": {
+            "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+          }
+        },
+        "type": "slack",
+        "when": [
+          "pipeline.starting"
+        ]
+      }
+    ]
+  },
+  {
+    "expectedArtifacts": [
+      {
+        "defaultArtifact": {
+          "id": "3abe1976-6126-4b9c-bc7b-f8ae48ace8a9",
+          "name": "deployer/pvc.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/deployer/pvc.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "pvc",
+        "id": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "matchArtifact": {
+          "id": "bd411a9e-6c0f-46be-a557-a358c2a5d348",
+          "name": "pvc",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "2b99db6b-2ade-4ea0-9446-56522898fcbc",
+          "name": "deployer/service.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/deployer/service.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "service",
+        "id": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "matchArtifact": {
+          "id": "7d05ec7e-6fa6-4c15-accf-2d7099810a28",
+          "name": "service",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "b8a6130d-f377-4a82-b95a-1f40d72e8706",
+          "name": "deployer/deployment.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/deployer/deployment.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "deployment",
+        "id": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "matchArtifact": {
+          "id": "59b6c2e8-dd62-4d83-a1b4-3d6b7274bfc5",
+          "name": "deployment",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      }
+    ],
+    "keepWaitingPipelines": false,
+    "parameterConfig": [
+      {
+        "default": "nonprod",
+        "label": "",
+        "name": "ENV",
+        "required": true
+      }
+    ],
+    "lastModifiedBy": "Sankar.Kanagarathinam@dowjones.com",
+    "description": "Pipeline to deploy app djin-mproductivity-splunk",
+    "index": 5,
+    "triggers": [],
+    "appConfig": {},
+    "limitConcurrent": true,
+    "application": "djin-mproductivity-splunk",
+    "name": "splunk-deployer-v2",
+    "stages": [
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "pvc",
+        "refId": "4",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "service",
+        "refId": "5",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "4"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "deployment",
+        "refId": "6",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "5"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      }
+    ],
+    "id": "55cc04d1-1f05-47c1-8055-4e490eef371f",
+    "updateTs": "1567022714000",
+    "notifications": [
+      {
+        "address": "gtest",
+        "level": "pipeline",
+        "message": {
+          "pipeline.complete": {
+            "text": "Application ${ stages[moniker]['name'] }  stage ${ execution[stages'][0]['name'] } complete successfully"
+          },
+          "pipeline.failed": {
+            "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+          }
+        },
+        "type": "slack",
+        "when": [
+          "pipeline.starting"
+        ]
+      }
+    ]
+  },
+  {
+    "expectedArtifacts": [
+      {
+        "defaultArtifact": {
+          "id": "3abe1976-6126-4b9c-bc7b-f8ae48ace8a9",
+          "name": "captain/pvc.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/captain/pvc.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "pvc",
+        "id": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "matchArtifact": {
+          "id": "bd411a9e-6c0f-46be-a557-a358c2a5d348",
+          "name": "pvc",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "2b99db6b-2ade-4ea0-9446-56522898fcbc",
+          "name": "captain/service.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/captain/service.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "service",
+        "id": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "matchArtifact": {
+          "id": "7d05ec7e-6fa6-4c15-accf-2d7099810a28",
+          "name": "service",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "b8a6130d-f377-4a82-b95a-1f40d72e8706",
+          "name": "captain/deployment.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/captain/deployment.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "deployment",
+        "id": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "matchArtifact": {
+          "id": "59b6c2e8-dd62-4d83-a1b4-3d6b7274bfc5",
+          "name": "deployment",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      }
+    ],
+    "keepWaitingPipelines": false,
+    "parameterConfig": [
+      {
+        "default": "nonprod",
+        "label": "",
+        "name": "ENV",
+        "required": true
+      }
+    ],
+    "lastModifiedBy": "Sankar.Kanagarathinam@dowjones.com",
+    "description": "Pipeline to deploy app djin-mproductivity-splunk",
+    "index": 6,
+    "triggers": [],
+    "appConfig": {},
+    "limitConcurrent": true,
+    "application": "djin-mproductivity-splunk",
+    "name": "splunk-search-captain-v2",
+    "stages": [
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "pvc",
+        "refId": "4",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "service",
+        "refId": "5",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "4"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "deployment",
+        "refId": "6",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "5"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      }
+    ],
+    "id": "c9fe19fd-5410-4918-a427-efad6c33c557",
+    "updateTs": "1567022715000",
+    "notifications": [
+      {
+        "address": "gtest",
+        "level": "pipeline",
+        "message": {
+          "pipeline.complete": {
+            "text": "Application ${ stages[moniker]['name'] }  stage ${ execution[stages'][0]['name'] } complete successfully"
+          },
+          "pipeline.failed": {
+            "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+          }
+        },
+        "type": "slack",
+        "when": [
+          "pipeline.starting"
+        ]
+      }
+    ]
+  },
+  {
+    "expectedArtifacts": [
+      {
+        "defaultArtifact": {
+          "id": "3abe1976-6126-4b9c-bc7b-f8ae48ace8a9",
+          "name": "hec-heavy-forwarder/pvc.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/hec-heavy-forwarder/pvc.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "pvc",
+        "id": "0ee53c3e-9f9c-4178-adc5-181e523d519e",
+        "matchArtifact": {
+          "id": "bd411a9e-6c0f-46be-a557-a358c2a5d348",
+          "name": "pvc",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "2b99db6b-2ade-4ea0-9446-56522898fcbc",
+          "name": "hec-heavy-forwarder/service.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/hec-heavy-forwarder/service.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "service",
+        "id": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "matchArtifact": {
+          "id": "7d05ec7e-6fa6-4c15-accf-2d7099810a28",
+          "name": "service",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "b8a6130d-f377-4a82-b95a-1f40d72e8706",
+          "name": "hec-heavy-forwarder/deployment.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/hec-heavy-forwarder/deployment.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "deployment",
+        "id": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "matchArtifact": {
+          "id": "59b6c2e8-dd62-4d83-a1b4-3d6b7274bfc5",
+          "name": "deployment",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      }
+    ],
+    "keepWaitingPipelines": false,
+    "parameterConfig": [
+      {
+        "default": "nonprod",
+        "label": "",
+        "name": "ENV",
+        "required": true
+      }
+    ],
+    "lastModifiedBy": "Sankar.Kanagarathinam@dowjones.com",
+    "description": "Pipeline to deploy app djin-mproductivity-splunk",
+    "index": 7,
+    "triggers": [],
+    "appConfig": {},
+    "limitConcurrent": true,
+    "application": "djin-mproductivity-splunk",
+    "name": "splunk-hec-v2",
+    "stages": [
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "service",
+        "refId": "5",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "deployment",
+        "refId": "6",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "5"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      }
+    ],
+    "id": "85e10795-20d6-4bad-a348-f6c0fc705df3",
+    "updateTs": "1567022714000",
+    "notifications": [
+      {
+        "address": "gtest",
+        "level": "pipeline",
+        "message": {
+          "pipeline.complete": {
+            "text": "Application ${ stages[moniker]['name'] }  stage ${ execution[stages'][0]['name'] } complete successfully"
+          },
+          "pipeline.failed": {
+            "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+          }
+        },
+        "type": "slack",
+        "when": [
+          "pipeline.starting"
+        ]
+      }
+    ]
+  },
+  {
+    "expectedArtifacts": [
+      {
+        "defaultArtifact": {
+          "id": "2b99db6b-2ade-4ea0-9446-56522898fcbc",
+          "name": "search/service.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/search/service.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "service",
+        "id": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "matchArtifact": {
+          "id": "7d05ec7e-6fa6-4c15-accf-2d7099810a28",
+          "name": "service",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      },
+      {
+        "defaultArtifact": {
+          "id": "b8a6130d-f377-4a82-b95a-1f40d72e8706",
+          "name": "search/deployment.yaml",
+          "reference": "https://github.dowjones.net/api/v3/repos/djin-infrastructure/djin-mproductivity-splunk/contents/search/deployment.yaml",
+          "type": "github/file",
+          "version": "v2"
+        },
+        "displayName": "deployment",
+        "id": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "matchArtifact": {
+          "id": "59b6c2e8-dd62-4d83-a1b4-3d6b7274bfc5",
+          "name": "deployment",
+          "type": "github/file"
+        },
+        "useDefaultArtifact": true,
+        "usePriorArtifact": false
+      }
+    ],
+    "keepWaitingPipelines": false,
+    "parameterConfig": [
+      {
+        "default": "nonprod",
+        "label": "",
+        "name": "ENV",
+        "required": true
+      }
+    ],
+    "lastModifiedBy": "Sankar.Kanagarathinam@dowjones.com",
+    "description": "Pipeline to deploy app djin-mproductivity-splunk",
+    "index": 8,
+    "triggers": [],
+    "appConfig": {},
+    "limitConcurrent": true,
+    "application": "djin-mproductivity-splunk",
+    "name": "splunk-search-v2",
+    "stages": [
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "ab5fdb51-ee95-4e1a-8a2a-7e8312d94789",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "service",
+        "refId": "5",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      },
+      {
+        "account": "web-splunk-virginia-nonprod-main",
+        "cloudProvider": "kubernetes",
+        "manifestArtifactAccount": "github-dowjones-net",
+        "manifestArtifactId": "f474b23d-ab5b-444c-b09d-98f8b1cfe89b",
+        "moniker": {
+          "app": "djin-mproductivity-splunk"
+        },
+        "name": "deployment",
+        "refId": "6",
+        "relationships": {
+          "loadBalancers": [],
+          "securityGroups": []
+        },
+        "requisiteStageRefIds": [
+          "5"
+        ],
+        "skipExpressionEvaluation": false,
+        "source": "artifact",
+        "trafficManagement": {
+          "enabled": false,
+          "options": {
+            "enableTraffic": false,
+            "services": []
+          }
+        },
+        "type": "deployManifest"
+      }
+    ],
+    "id": "f0e1c67d-8596-4a75-9993-cae86548fea1",
+    "updateTs": "1567022715000",
+    "notifications": [
+      {
+        "address": "gtest",
+        "level": "pipeline",
+        "message": {
+          "pipeline.complete": {
+            "text": "Application ${ stages[moniker]['name'] }  stage ${ execution[stages'][0]['name'] } complete successfully"
+          },
+          "pipeline.failed": {
+            "text": "Application ${ execution['application'] } pipeline ${ execution['name'] } stage ${ execution['stages'][0]['name'] } failed"
+          }
+        },
+        "type": "slack",
+        "when": [
+          "pipeline.starting"
+        ]
+      }
+    ]
+  }
+]

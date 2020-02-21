@@ -1,0 +1,346 @@
+
+        <!--
+            Licensed to the Apache Software Foundation (ASF) under one or more
+            contributor license agreements.  See the NOTICE file distributed with
+            this work for additional information regarding copyright ownership.
+            The ASF licenses this file to You under the Apache License, Version 2.0
+            (the "License"); you may not use this file except in compliance with
+            the License.  You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+            Unless required by applicable law or agreed to in writing, software
+            distributed under the License is distributed on an "AS IS" BASIS,
+            WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+            See the License for the specific language governing permissions and
+            limitations under the License.
+        -->
+        <!-- START SNIPPET: example -->
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+    <!-- Allows us to use system properties as variables in this configuration file -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <value>file:${activemq.conf}/credentials.properties</value>
+        </property>
+    </bean>
+
+    <!-- Allows accessing the server log -->
+    <bean id="logQuery" class="io.fabric8.insight.log.log4j.Log4jLogQuery"
+          lazy-init="false" scope="singleton"
+          init-method="start" destroy-method="stop">
+    </bean>
+
+    <!--
+        The <broker schedulerSupport="true"> element is used to configure the ActiveMQ broker.
+    -->
+    <broker schedulerSupport="true" useJmx="true" xmlns="http://activemq.apache.org/schema/core" brokerName="activemq-8" brokerId="activemq-8" dataDirectory="${activemq.data}">
+
+        <destinations>
+            <queue physicalName="Selector.cgw_aidest.VirtualTopic.Selector.delivery.aidest" />
+            <queue physicalName="Selector.cgw_wc20dest.VirtualTopic.Selector.delivery.wc20dest" />
+        </destinations>
+
+
+        <destinationPolicy>
+            <policyMap>
+                <policyEntries>
+
+                    <!--<policyEntry queue=">" enableAudit="false">-->
+                    <!--<networkBridgeFilterFactory>-->
+                    <!--<conditionalNetworkBridgeFilterFactory replayDelay="1000" replayWhenNoConsumers="true"/>-->
+                    <!--</networkBridgeFilterFactory>-->
+                    <!--</policyEntry>-->
+
+
+                    <policyEntry queue=">" timeBeforeDispatchStarts="1000" producerFlowControl="true" cursorMemoryHighWaterMark="70" storeUsageHighWaterMark="10" memoryLimit="50mb" optimizedDispatch="true" maxPageSize="200" useCache="false"  expireMessagesPeriod="0">
+
+                        <networkBridgeFilterFactory>
+                            <conditionalNetworkBridgeFilterFactory replayWhenNoConsumers="true"/>
+                        </networkBridgeFilterFactory>
+
+                        <dispatchPolicy>
+                            <roundRobinDispatchPolicy />
+                        </dispatchPolicy>
+                        <messageGroupMapFactory>
+                            <simpleMessageGroupMapFactory/>
+                        </messageGroupMapFactory>
+                        <pendingMessageLimitStrategy>
+                            <constantPendingMessageLimitStrategy limit="-1"/>
+                        </pendingMessageLimitStrategy>
+
+                        <pendingQueuePolicy>
+                            <fileQueueCursor />
+                        </pendingQueuePolicy>
+
+                    </policyEntry>
+
+
+                    <policyEntry topic=">" producerFlowControl="true" useCache="false" >
+
+                        <dispatchPolicy>
+                            <roundRobinDispatchPolicy />
+                        </dispatchPolicy>
+
+                        <messageGroupMapFactory>
+                            <simpleMessageGroupMapFactory/>
+                        </messageGroupMapFactory>
+
+                    </policyEntry>
+
+                    <!--<policyEntry topic=">" >-->
+                    <!--&lt;!&ndash; The constantPendingMessageLimitStrategy is used to prevent-->
+                    <!--slow topic consumers to block producers and affect other consumers-->
+                    <!--by limiting the number of messages that are retained-->
+                    <!--For more information, see:-->
+
+                    <!--http://activemq.apache.org/slow-consumer-handling.html-->
+
+                    <!--&ndash;&gt;-->
+                    <!--<pendingMessageLimitStrategy>-->
+                    <!--<constantPendingMessageLimitStrategy limit="1000"/>-->
+                    <!--</pendingMessageLimitStrategy>-->
+                    <!--</policyEntry>-->
+
+                </policyEntries>
+            </policyMap>
+        </destinationPolicy>
+
+
+        <!--
+            The managementContext is used to configure how ActiveMQ is exposed in
+            JMX. By default, ActiveMQ uses the MBean server that is started by
+            the JVM. For more information, see:
+
+            http://activemq.apache.org/jmx.html
+        -->
+
+        <managementContext>
+            <managementContext createConnector="true" rmiServerPort="1098" connectorPort="1099" suppressMBean="endpoint=dynamicProducer,endpoint=Consumer,destinationName=ActiveMQ.Advisory.*,destinationName=ActiveMQ.*,destinationName=Activemq.*,connectionName=tcp.*,clientId=activemq.*"/>
+        </managementContext>
+
+        <!--
+            Configure message persistence for the broker. The default persistence
+            mechanism is the KahaDB store (identified by the kahaDB tag).
+            For more information, see:
+
+            http://activemq.apache.org/persistence.html
+        -->
+
+        <persistenceAdapter>
+
+            <jdbcPersistenceAdapter dataDirectory="${activemq.data}/activemq-data" dataSource="#mysql-ds" useLock="false" lockKeepAlivePeriod="0">
+
+                <statements>
+                    <statements binaryDataType ="LONGBLOB"/>
+                </statements>
+
+            </jdbcPersistenceAdapter>
+        </persistenceAdapter>
+
+
+
+        <!--
+          The systemUsage controls the maximum amount of space the broker will
+          use before disabling caching and/or slowing down producers. For more information, see:
+          http://activemq.apache.org/producer-flow-control.html
+        -->
+        <systemUsage>
+            <systemUsage sendFailIfNoSpace="true">
+                <memoryUsage>
+                    <memoryUsage percentOfJvmHeap="55" />
+                </memoryUsage>
+                <storeUsage>
+                    <storeUsage limit="10 gb"/>
+                </storeUsage>
+                <tempUsage>
+                    <tempUsage percentLimit="70"/>
+                </tempUsage>
+            </systemUsage>
+        </systemUsage>
+
+        <!--
+            The transport connectors expose ActiveMQ over a given protocol to
+            clients and other brokers. For more information, see:
+
+            http://activemq.apache.org/configuring-transports.html
+        -->
+        <transportConnectors>
+            <!-- DOS protection, limit concurrent connections to 1000 and frame size to 100MB -->
+            <transportConnector name="nc_openwire" allowLinkStealing="true" uri="tcp://0.0.0.0:61618?transport.keepAlive=true&amp;transport.wireFormat.maxInactivityDuration=10000&amp;transport.useKeepAlive=true&amp;transport.tcpNoDelay=true&amp;maximumConnections=300&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="openwire" uri="nio://0.0.0.0:61616?transport.keepAlive=true&amp;transport.wireFormat.maxInactivityDuration=10000&amp;wireFormat.maxInactivityDuration=10000&amp;transport.useKeepAlive=true&amp;updateClusterClients=true&amp;transport.maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="amqp" uri="amqp://0.0.0.0:5672?wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="stomp" uri="stomp://0.0.0.0:61613?wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="mqtt" uri="mqtt://0.0.0.0:1883?wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="ws" uri="ws://0.0.0.0:61614?wireFormat.maxFrameSize=104857600"/>
+        </transportConnectors>
+
+        <!-- destroy the spring context on shutdown to stop jetty -->
+        <shutdownHooks>
+            <bean xmlns="http://www.springframework.org/schema/beans" class="org.apache.activemq.hooks.SpringContextHook" />
+        </shutdownHooks>
+
+        <destinationInterceptors>
+            <virtualDestinationInterceptor>
+                <virtualDestinations>
+                    <virtualTopic name="VirtualTopic.Distribution" prefix="SelectorConsumer.*." selectorAware="true"/>
+                    <virtualTopic name="VirtualTopic.Selector.>" prefix="Selector.*." selectorAware="true"/>
+                    <virtualTopic name="VirtualTopic.>" prefix="Consumer.*." selectorAware="false"/>
+                </virtualDestinations>
+            </virtualDestinationInterceptor>
+        </destinationInterceptors>
+
+
+
+        <plugins>
+            <bean xmlns="http://www.springframework.org/schema/beans" id="djVirtualSelectorCacheBrokerPlugin" class="com.dowjones.activemq.selectoraware.broker.DJSubQueueSelectorCacheBrokerPlugin">
+                <property name="cacheStorage" ref="cacheStorageJDBC" />
+            </bean>
+        </plugins>
+
+
+        <networkConnectors>
+
+            <networkConnector name="activemq-i->activemq-a" uri="static:(tcp://activemq-a:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-b" uri="static:(tcp://activemq-b:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-c" uri="static:(tcp://activemq-c:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-d" uri="static:(tcp://activemq-d:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-e" uri="static:(tcp://activemq-e:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-f" uri="static:(tcp://activemq-f:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-g" uri="static:(tcp://activemq-g:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-h" uri="static:(tcp://activemq-h:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-j" uri="static:(tcp://activemq-j:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-k" uri="static:(tcp://activemq-k:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-l" uri="static:(tcp://activemq-l:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-m" uri="static:(tcp://activemq-m:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-n" uri="static:(tcp://activemq-n:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-o" uri="static:(tcp://activemq-o:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+            <networkConnector name="activemq-i->activemq-p" uri="static:(tcp://activemq-p:61618?daemon=true&amp;keepAlive=true&amp;useInactivityMonitor=false&amp;wireFormat.maxInactivityDuration=0)?daemon=true&amp;keepAlive=true&amp;useKeepAlive=true&amp;wireFormat.maxInactivityDuration=0&amp;tcpNoDelay=true&amp;useInactivityMonitor=false"
+                              messageTTL="-1"
+                              consumerTTL="2"
+                              decreaseNetworkConsumerPriority="true"
+                              suppressDuplicateQueueSubscriptions="true"
+                              prefetchSize="1"/>
+
+        </networkConnectors>
+    </broker>
+
+
+    <bean xmlns="http://www.springframework.org/schema/beans" id="cacheStorageJDBC" class="com.dowjones.activemq.selectoraware.storage.jdbc.DJSubscriptionCacheStorageJDBC">
+        <property name="dbConnectionUrl" value="jdbc:mysql://vir.activemq.rds.contentmgmt.prod.pib.dowjones.io/activemq-8?relaxAutoCommit=true&amp;createDatabaseIfNotExist=true" />
+        <property name="dbuser" value="epadmin" />
+        <property name="dbpassword" value="EPAdmin123" />
+    </bean>
+
+    <bean id="mysql-ds" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://vir.activemq.rds.contentmgmt.prod.pib.dowjones.io/activemq-8?relaxAutoCommit=true&amp;createDatabaseIfNotExist=true"/>
+        <property name="username" value="epadmin"/>
+        <property name="password" value="EPAdmin123"/>
+        <property name="poolPreparedStatements" value="true"/>
+
+    </bean>
+
+
+    <!--
+        Enable web consoles, REST and Ajax APIs and demos
+        The web consoles requires by default login, you can disable this in the jetty.xml file
+
+        Take a look at ${ACTIVEMQ_HOME}/conf/jetty.xml for more details
+    -->
+
+
+
+    <import resource="jetty.xml"/>
+
+</beans>
+        <!-- END SNIPPET: example -->
